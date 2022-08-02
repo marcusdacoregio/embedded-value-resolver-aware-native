@@ -1,0 +1,32 @@
+buildscript {
+	dependencies {
+		classpath "org.springframework.boot:spring-boot-gradle-plugin:3.0.0-SNAPSHOT"
+	}
+}
+
+plugins {
+	id 'org.springframework.boot' version '3.0.0-SNAPSHOT'
+	id 'io.spring.dependency-management' version '1.0.12.RELEASE'
+	id 'java'
+	id 'org.graalvm.buildtools.native' version '0.9.13'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+repositories {
+	mavenCentral()
+	maven { url 'https://repo.spring.io/milestone' }
+	maven { url 'https://repo.spring.io/snapshot' }
+}
+
+dependencies {
+	implementation(platform(org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES))
+	implementation 'org.springframework.boot:spring-boot-starter'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
